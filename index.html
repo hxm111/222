@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>angular简单知识</title>
+
+
+    <script src="requireCommon/angular/angular.min.js"></script>
+    <script src="requireCommon/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script src="common/config.js"></script>
+    <script src="common/boot.js"></script>
+    <script src="common/router.js"></script>
+
+    <link rel="stylesheet" href="requireCommon/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resource/all.css">
+
+
+</head>
+<body ng-controller="config">
+    <header >
+
+        <div class="g-nav" style="margin-bottom: 20px;">
+
+            <div class="hidden-xs hidden-sm hidden-md logo-group">
+                <div class="g-nav-logo"></div>
+
+                <div class="logo-detail">
+                    <span class="logo-title">angular</span>
+                    <span>angular简单知识</span>
+                </div>
+            </div>
+
+            <ul style="margin-bottom: 0;">
+
+                <li ng-repeat="item in navs" ng-class="{'active':$state.includes(item.name)}" class="g-nav-{{$index}}" >
+                    <a ui-sref="{{item.url}}" style="border:none;">
+                        <span class="g-nav-img" style="display: block;"></span>
+                        <p class="g-nav-id">{{item.title}}</p>
+
+
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="logout">
+                <!--<div class="user-info"><span>{{$cu.UserName}}</span></div>-->
+                <div class="user-info"><span>hxm</span></div>
+                <buttom class="logoutBtn" ng-click="logout()">退出登录</buttom>
+            </div>
+        </div>
+
+
+    </header>
+
+
+    <ui-view>
+
+
+
+    </ui-view>
+
+</body>
+</html>
