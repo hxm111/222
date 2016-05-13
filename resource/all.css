@@ -78,3 +78,22 @@
     color: #0c71b6;
     cursor: pointer;
 }
+
+
+.g-nav .g-nav-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.g-nav-0 .g-nav-img{
+    background-image: url('images/contents1.png');
+}
+.g-nav .g-nav-0.active .g-nav-img{
+    background-image: url('images/contents2.png');
+}
+.g-nav-1 .g-nav-img{
+    background-image: url('images/devices1.png');
+}
+.g-nav .g-nav-1.active .g-nav-img{
+    background-image: url('images/devices2.png');
+}

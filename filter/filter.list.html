@@ -1,1 +1,142 @@
-<div>filter</div>
+<div>
+
+    <h4>一. 自定义过滤器</h4>
+    <h5 style="padding-left:30px;">使用angular的filter方法，返回一个函数，该函数接收输入值，并返回处理后的结果。</h5>
+
+    <p style="padding-left: 30px">
+        app.filter("myFilter", function () {
+        return function (arr) {
+        var newArr=[];
+        for(var i = 0; i < arr.length; i++){
+        if(arr[i].name==="aaa"){
+        newArr.push(arr[i]);
+        }
+        }
+        return newArr;
+        }
+        });
+    </p>
+
+
+    <div style="padding-left: 30px" >
+        在html中使用：
+        <p>
+             &lt;p&gt; ng-repeate=“item in arr | myFilter”>{{item.name}}&lt;/p&gt;
+        </p>
+        在controller中使用：
+        <p>
+            app.controller("mainController",function ($scope,currencyFilter,$filter) {
+            //currencyFilter是ng内置的货币过滤器
+            console.log(currencyFilter(234)); //返回$234
+
+            //返回$123,注意这里传入的是‘currency’,而不是‘currencyFilter’
+            console.log($filter(‘currency’)(123));
+
+            var arr1=[
+            {name:"bbb"}, {name:"aaa"},
+            {name:"aaa"}, {name:"ccc"}
+            ];
+            var newArr = [];
+            newArr = $filter(‘myFilter’)(arr1);//返回过滤后的数组并赋给newarr数组
+
+            }）；
+
+        </p>
+
+    </div>
+
+
+    <h4>二、angular 内置过滤器</h4>
+    <div style="padding-left: 30px">
+        <h5 >1、date</h5>
+        <div style="padding-left: 30px">
+            <span >html："&lt;p&gt;&#%7b;&#%7b mydate | date : 'yyyy-MM-dd hh:mm:ss EEEE' &%7d;&%7d&lt;/p&gt;"</span>
+            <p >此日期格式可以自由组合，hh（0-12的数字），HH(0-24的数字) EEEE表示星期几</p>
+
+            <p>
+                controller：{
+                <p></p>1、在controller中注入$filter,使用$filter(‘date’)(mydate,'yyyy-MM-dd HH:mm’);
+                2、在controller中注入dateFilter,使用dateFilter(mydate,'yyyy-MM-dd HH:mm’);
+                }
+            </p>
+        </div>
+
+        <h4>2、filter(匹配子字符串)</h4>
+        <div style="padding-left: 30px">
+            <h5 >
+                用来处理一个数组，然后可以过滤出含有某个子串的元素，作为一个子数组来返回。可以是字符串数组，
+                也可以是对象数组。如果是对象数组，可以匹配属性的值。它接收一个参数，用来定义子串的匹配规则。
+            </h5>
+            <p >
+                例： $scope.childrenArray = [
+                {name:'kimi',age:3},
+                {name:'cindy',age:4},
+                {name:'anglar',age:4},
+                {name:'shitou',age:6},
+                {name:'tiantian',age:5}
+                ];
+                $scope.func = function(e){return e.age>4;}
+
+                {{ childrenArray | filter : 'a' }} //匹配属性值中含有a的
+                {{ childrenArray | filter : 4 }}  //匹配属性值中含有4的
+                {{ childrenArray | filter : {name : 'i'} }} //参数是对象，匹配name属性中含有i的
+                {{childrenArray | filter : func }}  //参数是函数，指定返回age>4的
+            </p>
+        </div>
+
+
+
+        <h4>3、json(格式化json对象)</h4>
+        <div style="padding-left: 30px">
+            <h5 >
+                json过滤器可以把一个js对象格式化为json字符串，没有参数。这东西有什么用呢，
+                我一般也不会在页面上输出一个json串啊，官网说它可以用来进行调试，嗯，是个不错的选择。
+                或者，也可以用在js中使用，作用就和我们熟悉的JSON.stringify()一样。
+                {{ jsObject | json}}
+            </h5>
+        </div>
+
+
+
+        <h4>
+            4、lowercase（把整个字符串都转换为小写
+        </h4>
+        <div style="padding-left: 30px">
+            <p >
+                &#123;&#123; myString | lowercase &#125;&#125;
+            </p>
+        </div>
+
+
+        <h4>
+            5、uppercase（把整个字符串都转换为大写）
+        </h4>
+        <div style="padding-left: 30px">
+            <p >
+                &#123;&#123; myString | uppercase &#125;&#125;
+            </p>
+        </div>
+
+
+        <h4>
+            6、orderBy(将数组中的元素进行排序)
+        </h4>
+        <div style="padding-left:30px;">
+            <h5 >
+                接收一个参数来指定排序规则，参数可以是一个字符串，表示以该属性名称进行排序。
+                可以是一个函数，定义排序属性。还可以是一个数组，表示依次按数组中的属性值进行
+                排（若按第一项比较的值相等，再按第二项比较）。
+            </h5>
+            <p>
+                拿上面的childrenArray举例：
+                &lt;div&gt;&#123;&#123; childrenArray | orderBy : 'age' &#125;&#125;&lt;/div&gt;      //按age属性值进行排序
+                &lt;div&gt;{{ childrenArray | orderBy : orderFunc }}&lt;/div&gt;   //按照函数的返回值进行排序
+                &lt;div&gt;{{ childrenArray | orderBy : ['age','name'] }}&lt;/div&gt;//如果age相同，按照name进行排序
+            </p>
+        </div>
+
+
+
+    </div>
+
+</div>

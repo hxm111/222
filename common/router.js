@@ -10,6 +10,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('filter', {
             abstract: true,
             url: '/filter',
+            controller:"filter.list",
             templateUrl: viewurl+"filter/filter.list.html"
+
+        })
+        .state('filter.list', {
+            url: '',
+            template:"",
+
         })
 });

@@ -2,18 +2,23 @@
 <html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
-    <title>angular简单知识</title>
+    <title>angular</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-    <script src="requireCommon/angular/angular.min.js"></script>
+    <script src="requireCommon/angular/angular.js"></script>
     <script src="requireCommon/angular-ui-router/release/angular-ui-router.min.js"></script>
-
-    <script src="common/config.js"></script>
-    <script src="common/boot.js"></script>
-    <script src="common/router.js"></script>
+    <script src="requireCommon/jquery/dist/jquery.min.js"></script>
 
     <link rel="stylesheet" href="requireCommon/bootstrap-3.3.5-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="resource/all.css">
+
+    <script src="common/config.js"></script>
+    <script src="common/router.js"></script>
+
+    <script src="filter/filterCtrl.js"></script>
+
+
 
 
 </head>
@@ -37,11 +42,10 @@
                     <a ui-sref="{{item.url}}" style="border:none;">
                         <span class="g-nav-img" style="display: block;"></span>
                         <p class="g-nav-id">{{item.title}}</p>
-
-
                     </a>
                 </li>
             </ul>
+
 
 
             <div class="logout">
@@ -63,3 +67,4 @@
 
 </body>
 </html>
+
